@@ -25,7 +25,6 @@ class MyApp extends StatelessWidget {
               children: [
                 Container(
                   padding: EdgeInsets.only(top: 10, bottom: 10),
-                  // height: 100,
                   color: Colors.lightBlueAccent,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

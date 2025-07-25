@@ -63,7 +63,6 @@ class _MyAppState extends State<MyApp> {
               TextButton(
                 onPressed: () {
                   setState(() {
-                    // state = stateDefault;
                     state = stateList[Random().nextInt(3)];
                     print('state: $state');
                   });

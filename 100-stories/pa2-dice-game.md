@@ -2,8 +2,8 @@
 
 <figure><img src="../.gitbook/assets/PA2_Dice Game.PNG" alt="" width="188"><figcaption></figcaption></figure>
 
-<pre class="language-dart"><code class="lang-dart"><a data-footnote-ref href="#user-content-fn-1">import 'dart:math'</a>;
-import 'package:flutter/material.dart';
+<pre class="language-dart"><code class="lang-dart"><strong>import 'dart:math';
+</strong>import 'package:flutter/material.dart';
 
 void main() {
   return runApp(MyApp());
@@ -52,10 +52,10 @@ class _MyAppState extends State&#x3C;MyApp> {
                     child: TextButton(
                       child: Image.asset('images/dice$leftDice.png'),
                       onPressed: () {
-                        <a data-footnote-ref href="#user-content-fn-1">setState(() {</a>
-                          <a data-footnote-ref href="#user-content-fn-1">leftDice = Random().nextInt(6) + 1;</a>
-                          <a data-footnote-ref href="#user-content-fn-1">print('Left Dice = $leftDice');</a>
-                        <a data-footnote-ref href="#user-content-fn-1">});</a>
+<strong>                        setState(() {
+</strong><strong>                          leftDice = Random().nextInt(6) + 1;
+</strong><strong>                          print('Left Dice = $leftDice');
+</strong>                        <a data-footnote-ref href="#user-content-fn-1">});</a>
                       },
                     ),
                   ),
