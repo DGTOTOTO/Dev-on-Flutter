@@ -1,6 +1,6 @@
 # PA4 Xylophone
 
-
+<figure><img src="../.gitbook/assets/PA4_Xylophone.PNG" alt="" width="188"><figcaption></figcaption></figure>
 
 <pre class="language-dart"><code class="lang-dart">import 'package:flutter/material.dart';
 <strong>import 'package:just_audio/just_audio.dart';
@@ -15,40 +15,65 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State&#x3C;MyApp> {
-<strong>  late AudioPlayer player1;
-</strong><strong>  @override
-</strong><strong>  void initState() {
+<strong>  late List&#x3C;AudioPlayer> players;
+</strong>
+  final List&#x3C;Color> colors = [
+    Colors.red,
+    Colors.orange,
+    Colors.yellow,
+    Colors.green,
+    Colors.teal,
+    Colors.blue,
+    Colors.purple,
+  ];
+  
+  @override
+<strong>  void initState() {
 </strong><strong>    super.initState();
-</strong><strong>    player1 = AudioPlayer();
+</strong><strong>    players = List.generate(7, (_) => AudioPlayer());
 </strong><strong>  }
 </strong>
-<strong>  @override
-</strong><strong>  void dispose() {
-</strong><strong>    player1.dispose();
+  @override
+<strong>  void dispose() {
+</strong><strong>    for (var player in players) {
+</strong><strong>      player.dispose();
+</strong><strong>    }
 </strong><strong>    super.dispose();
-</strong><strong>  }
-</strong>
+</strong>  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
           title: Text('xylophone', style: TextStyle(fontFamily: 'Gill Sans')),
+          backgroundColor: Colors.black,
+          foregroundColor: Colors.white,
         ),
         body: SafeArea(
-          child: Container(
-            child: Center(
-              child: TextButton(
-<strong>                onPressed: () async {
-</strong><strong>                  await player1.setAsset('assets/note1.wav');
-</strong><strong>                  player1.play();
-</strong><strong>                },
-</strong>                style: TextButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  foregroundColor: Colors.white,
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: List.generate(
+                7,
+                (index) => Expanded(
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: colors[index],
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                      ),
+                    ),
+<strong>                    onPressed: () async {
+</strong><strong>                      await players[index].setAsset('assets/note${index + 1}.wav');
+</strong><strong>                      players[index].play();
+</strong><strong>                    },
+</strong>                    child: const SizedBox.shrink(),
+                  ),
                 ),
-                child: Text('This is a sound button'),
               ),
             ),
           ),
@@ -104,4 +129,3 @@ class _MyAppState extends State&#x3C;MyApp> {
 ⚠️：`Future` 是 Dart 的异步返回值类型。
 
 </details>
-
